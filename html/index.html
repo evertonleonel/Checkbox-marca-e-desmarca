@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <table>
+
+            <thead>
+                <tr>
+                    <th> <input type="checkbox" id="selecionar-todos"> </th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> <input type="checkbox" class="selecionar-usuario"></td>
+                    <td>Ana</td>
+                    <td>ana@email.com</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" class="selecionar-usuario"></td>
+                    <td>Bia</td>
+                    <td>bia@email.com</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" class="selecionar-usuario"></td>
+                    <td>Mari</td>
+                    <td>mari@email.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script>
+            (function(){
+
+                const $selecionarTodos = document.getElementById('selecionar-todos');
+                const $checkboxes = document.querySelectorAll('.selecionar-usuario');
+
+                $checkboxes.forEach(function(checkbox){
+                    checkbox.addEventListener('click', function(){
+                        let totalSelecionado = 0
+
+                        $checkboxes.forEach(function(el){
+                            if(el.checked){
+                                totalSelecionado++;
+                            }
+                        })
+
+                        const allSelected = totalSelecionado === 0 ? false : totalSelecionado === $checkboxes.length;
+                        $selecionarTodos.checked = allSelected;
+                    })
+                })
+
+                $selecionarTodos.addEventListener('click', function(){
+                   $checkboxes.forEach(function(el){
+                       el.checked = $selecionarTodos.checked;
+                   })
+                })
+
+                
+                function exibirNome(nome, callback){
+                    console.log(nome)
+                    callback()
+                }
+
+                exibirNome('Everton', function(e){
+                    console.log(e)
+                    console.log('Leonel')
+                })
+
+            })()
+        </script>
+</body>
+</html>
